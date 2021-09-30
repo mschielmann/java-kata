@@ -3,7 +3,7 @@ package pl.mschielmann.javakata.fizzbuzz;
 public class FizzBuzz {
 
     public static String of(int i) {
-        if (i == 15) {
+        if (i % 15 == 0) {
             return "FizzBuzz";
         }
         if (i % 3 == 0) {
