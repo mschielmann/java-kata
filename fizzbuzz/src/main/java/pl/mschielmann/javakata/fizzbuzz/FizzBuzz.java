@@ -3,7 +3,7 @@ package pl.mschielmann.javakata.fizzbuzz;
 public class FizzBuzz {
 
     public static String of(int i) {
-        if (i == 0) {
+        if (i < 1) {
             throw new IllegalArgumentException("Input has to be greater than 0.");
         }
         if (i % 15 == 0) {

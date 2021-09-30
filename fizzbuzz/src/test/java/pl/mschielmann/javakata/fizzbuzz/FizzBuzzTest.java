@@ -48,7 +48,12 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void throws_exception_on_input_0() {
+    public void throws_exception_for_input_0() {
         assertThrows(IllegalArgumentException.class, () -> FizzBuzz.of(0));
+    }
+
+    @Test
+    public void throws_exception_for_input_less_than_0() {
+        assertThrows(IllegalArgumentException.class, () -> FizzBuzz.of(-1));
     }
 }
