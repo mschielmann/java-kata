@@ -20,4 +20,9 @@ public class FizzBuzzTest {
     public void returns_string_Fizz_for_input_3() {
         assertEquals("Fizz", FizzBuzz.of(3));
     }
+
+    @Test
+    public void returns_string_Buzz_for_input_5() {
+        assertEquals("Buzz", FizzBuzz.of(5));
+    }
 }
