@@ -35,4 +35,9 @@ public class FizzBuzzTest {
     public void returns_string_Buzz_for_input_10() {
         assertEquals("Buzz", FizzBuzz.of(10));
     }
+
+    @Test
+    public void returns_string_FizzBuzz_for_input_15() {
+        assertEquals("FizzBuzz", FizzBuzz.of(15));
+    }
 }
