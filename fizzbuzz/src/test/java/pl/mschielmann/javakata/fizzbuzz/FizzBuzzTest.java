@@ -7,12 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FizzBuzzTest {
 
     @Test
-    public void returns_1_for_input_1() {
+    public void returns_string_1_for_input_1() {
         assertEquals("1", FizzBuzz.of(1));
     }
 
     @Test
-    public void returns_2_for_input_2() {
+    public void returns_string_2_for_input_2() {
         assertEquals("2", FizzBuzz.of(2));
+    }
+
+    @Test
+    public void returns_string_Fizz_for_input_3() {
+        assertEquals("Fizz", FizzBuzz.of(3));
     }
 }
