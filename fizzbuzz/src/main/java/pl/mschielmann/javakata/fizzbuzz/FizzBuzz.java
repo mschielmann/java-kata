@@ -6,14 +6,18 @@ public class FizzBuzz {
         if (i < 1) {
             throw new IllegalArgumentException("Input has to be greater than 0.");
         }
-        if (i % 15 == 0) {
-            return "FizzBuzz";
-        }
+
+        String result = "";
         if (i % 3 == 0) {
-            return "Fizz";
-        } else if (i % 5 == 0) {
-            return "Buzz";
+            result += "Fizz";
         }
-        return String.valueOf(i);
+        if (i % 5 == 0) {
+            result += "Buzz";
+        }
+        if (result.isEmpty()) {
+            result = String.valueOf(i);
+        }
+
+        return result;
     }
 }
