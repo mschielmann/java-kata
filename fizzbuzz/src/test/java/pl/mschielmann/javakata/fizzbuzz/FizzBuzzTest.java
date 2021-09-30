@@ -3,6 +3,7 @@ package pl.mschielmann.javakata.fizzbuzz;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FizzBuzzTest {
 
@@ -44,5 +45,10 @@ public class FizzBuzzTest {
     @Test
     public void returns_string_FizzBuzz_for_input_30() {
         assertEquals("FizzBuzz", FizzBuzz.of(30));
+    }
+
+    @Test
+    public void throws_exception_on_input_0() {
+        assertThrows(IllegalArgumentException.class, () -> FizzBuzz.of(0));
     }
 }
