@@ -10,4 +10,9 @@ public class FizzBuzzTest {
     public void returns_1_for_input_1() {
         assertEquals("1", FizzBuzz.of(1));
     }
+
+    @Test
+    public void returns_2_for_input_2() {
+        assertEquals("2", FizzBuzz.of(2));
+    }
 }
