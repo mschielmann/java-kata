@@ -34,4 +34,12 @@ public class BowlingGameScoreTest
         game.registerScoreForBall(5);
         assertEquals(game.currentScore(), 0);
     }
+
+    @Test
+    public void if_first_frame_is_open_score_is_sum_of_two_balls() {
+        BowlingGame game = new BowlingGame();
+        game.registerScoreForBall(2);
+        game.registerScoreForBall(3);
+        assertEquals(game.currentScore(), 5);
+    }
 }
