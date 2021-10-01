@@ -19,4 +19,19 @@ public class BowlingGameScoreTest
         game.registerScoreForBall(5);
         assertEquals(game.currentScore(), 0);
     }
+
+    @Test
+    public void after_strike_in_first_frame_score_is_0() {
+        BowlingGame game = new BowlingGame();
+        game.registerScoreForBall(10);
+        assertEquals(game.currentScore(), 0);
+    }
+
+    @Test
+    public void after_spare_in_first_frame_score_is_0() {
+        BowlingGame game = new BowlingGame();
+        game.registerScoreForBall(5);
+        game.registerScoreForBall(5);
+        assertEquals(game.currentScore(), 0);
+    }
 }
