@@ -12,4 +12,11 @@ public class BowlingGameScoreTest
         BowlingGame game = new BowlingGame();
         assertEquals(game.currentScore(), 0);
     }
+
+    @Test
+    public void after_one_non_strike_ball_score_is_0() {
+        BowlingGame game = new BowlingGame();
+        game.registerScoreForBall(5);
+        assertEquals(game.currentScore(), 0);
+    }
 }
