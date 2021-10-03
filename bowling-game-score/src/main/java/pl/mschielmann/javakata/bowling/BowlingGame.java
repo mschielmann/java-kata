@@ -26,13 +26,15 @@ public class BowlingGame
 
     public void registerScoreForBall(int score)
     {
-        if (currentFrame - 1 >= 0 && frames.get(currentFrame - 1).scoringNotFinished())
+        int previousFrame = currentFrame - 1;
+        int secondToLastFrame = currentFrame - 2;
+        if (previousFrame >= 0 && frames.get(previousFrame).scoringNotFinished())
         {
-            frames.get(currentFrame - 1).addBonusBallScore(score);
+            frames.get(previousFrame).addBonusBallScore(score);
         }
-        if (currentFrame - 2 >= 0 && frames.get(currentFrame - 2).scoringNotFinished())
+        if (secondToLastFrame >= 0 && frames.get(secondToLastFrame).scoringNotFinished())
         {
-            frames.get(currentFrame - 2).addBonusBallScore(score);
+            frames.get(secondToLastFrame).addBonusBallScore(score);
         }
         if (currentFrame <= 8)
         {

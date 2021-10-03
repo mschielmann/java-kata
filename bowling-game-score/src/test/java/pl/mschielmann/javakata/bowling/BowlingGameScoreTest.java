@@ -109,4 +109,57 @@ public class BowlingGameScoreTest
         game.registerScoreForBall(10);
         assertEquals(300 , game.currentScore());
     }
+
+    @Test
+    public void game_with_all_balls_with_one_pin_sums_up_to_20() {
+        BowlingGame game = new BowlingGame();
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        assertEquals(20 , game.currentScore());
+    }
+
+    @Test
+    public void game_with_all_balls_with_one_pin_and_tenth_max_frame_sums_up_to_48() {
+        BowlingGame game = new BowlingGame();
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(1);
+        game.registerScoreForBall(10);
+        game.registerScoreForBall(10);
+        game.registerScoreForBall(10);
+        assertEquals(48 , game.currentScore());
+    }
 }
