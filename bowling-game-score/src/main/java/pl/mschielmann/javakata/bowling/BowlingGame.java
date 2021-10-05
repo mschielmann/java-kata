@@ -8,6 +8,7 @@ public class BowlingGame
     List<Frame> frames = new ArrayList<>();
     LastFrame lastFrame;
     int currentFrame = 0;
+    boolean gameEnded = false;
 
     public BowlingGame()
     {
@@ -30,6 +31,10 @@ public class BowlingGame
 
     public void registerScoreForBall(int score)
     {
+        if (gameEnded)
+        {
+            throw new IllegalStateException("Cannot add more scores to this game.");
+        }
         int previousFrameIndex = currentFrame - 1;
         int secondPreviousFrameIndex = currentFrame - 2;
         if (frameAwaitsScore(previousFrameIndex))
@@ -40,7 +45,7 @@ public class BowlingGame
         {
             frames.get(secondPreviousFrameIndex).addBonusBallScore(score);
         }
-        if (currentFrameIsRegular())
+        if (currentFrameIsNotLast())
         {
             frames.get(currentFrame).addFrameBallScore(score);
             createNewFrame();
@@ -48,6 +53,10 @@ public class BowlingGame
         else
         {
             lastFrame.addFrameBallScore(score);
+        }
+        if (lastFrame != null && lastFrame.isFinished())
+        {
+            gameEnded = true;
         }
     }
 
@@ -67,7 +76,7 @@ public class BowlingGame
         }
     }
 
-    private boolean currentFrameIsRegular()
+    private boolean currentFrameIsNotLast()
     {
         return currentFrame <= 8;
     }
@@ -136,24 +145,32 @@ public class BowlingGame
                     (isSpare() && firstBonusBall == null);
         }
 
-        public void addBonusBallScore(int i)
+        private void addBonusBallScore(int bonusScore)
         {
             if (isStrike())
             {
                 if (firstBonusBall == null)
                 {
-                    firstBonusBall = i;
+                    firstBonusBall = bonusScore;
+                }
+                else if (secondBallScore == null)
+                {
+                    secondBonusBall = bonusScore;
                 }
                 else
                 {
-                    secondBonusBall = i;
+                    throw new IllegalStateException("Cannot add 3rd bonus ball to the strike frame.");
                 }
             }
             else if (isSpare())
             {
                 if (firstBonusBall == null)
                 {
-                    firstBonusBall = i;
+                    firstBonusBall = bonusScore;
+                }
+                else
+                {
+                    throw new IllegalStateException("Cannot add 3rd bonus ball to the spare frame.");
                 }
             }
         }
@@ -175,35 +192,44 @@ public class BowlingGame
             {
                 secondBallScore = frameBallScore;
             }
-            else
+            else if (firstBallScore + secondBallScore >= 10)
             {
                 thirdBallScore = frameBallScore;
+            } else {
+                throw new IllegalStateException("Cannot add additional score to the last frame.");
             }
         }
 
         private int getScore()
         {
-            if (firstBallScore != null && secondBallScore != null)
+            if (!isFinished())
             {
-                if (firstBallScore + secondBallScore >= 10)
-                {
-                    if (thirdBallScore != null)
-                    {
-                        return firstBallScore + secondBallScore + thirdBallScore;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-                else
-                {
-                    return firstBallScore + secondBallScore;
-                }
+                return 0;
+            }
+
+            if (thirdBallScore != null)
+            {
+                return firstBallScore + secondBallScore + thirdBallScore;
             }
             else
             {
-                return 0;
+                return firstBallScore + secondBallScore;
+            }
+        }
+
+        private boolean isFinished()
+        {
+            if (firstBallScore == null || secondBallScore == null)
+            {
+                return false;
+            }
+            else if (firstBallScore + secondBallScore < 10)
+            {
+                return true;
+            }
+            else
+            {
+                return thirdBallScore != null;
             }
         }
     }
