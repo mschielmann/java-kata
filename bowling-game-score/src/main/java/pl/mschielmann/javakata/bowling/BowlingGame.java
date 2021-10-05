@@ -6,8 +6,8 @@ import java.util.List;
 public class BowlingGame
 {
     List<Frame> frames = new ArrayList<>();
+    LastFrame lastFrame;
     int currentFrame = 0;
-    LastFrame lastFrame = new LastFrame();
 
     public BowlingGame()
     {
@@ -21,36 +21,60 @@ public class BowlingGame
         {
             sum += frame.getScore();
         }
-        return sum + lastFrame.getScore();
+        if (lastFrame != null)
+        {
+            sum += lastFrame.getScore();
+        }
+        return sum;
     }
 
     public void registerScoreForBall(int score)
     {
-        int previousFrame = currentFrame - 1;
-        int secondToLastFrame = currentFrame - 2;
-        if (previousFrame >= 0 && frames.get(previousFrame).scoringNotFinished())
+        int previousFrameIndex = currentFrame - 1;
+        int secondPreviousFrameIndex = currentFrame - 2;
+        if (frameAwaitsScore(previousFrameIndex))
         {
-            frames.get(previousFrame).addBonusBallScore(score);
+            frames.get(previousFrameIndex).addBonusBallScore(score);
         }
-        if (secondToLastFrame >= 0 && frames.get(secondToLastFrame).scoringNotFinished())
+        if (frameAwaitsScore(secondPreviousFrameIndex))
         {
-            frames.get(secondToLastFrame).addBonusBallScore(score);
+            frames.get(secondPreviousFrameIndex).addBonusBallScore(score);
         }
-        if (currentFrame <= 8)
+        if (currentFrameIsRegular())
         {
             frames.get(currentFrame).addFrameBallScore(score);
-            if (frames.get(currentFrame).isFinished())
-            {
-                if (currentFrame < 8)
-                {
-                    frames.add(new Frame());
-                }
-                currentFrame++;
-            }
-        } else
+            createNewFrame();
+        }
+        else
         {
             lastFrame.addFrameBallScore(score);
         }
+    }
+
+    private void createNewFrame()
+    {
+        if (frames.get(currentFrame).isFinished())
+        {
+            if (currentFrame < 8)
+            {
+                frames.add(new Frame());
+            }
+            else
+            {
+                lastFrame = new LastFrame();
+            }
+            currentFrame++;
+        }
+    }
+
+    private boolean currentFrameIsRegular()
+    {
+        return currentFrame <= 8;
+    }
+
+    private boolean frameAwaitsScore(int frameIndex)
+    {
+        return frameIndex >= 0 && frames.get(frameIndex).scoringNotFinished();
     }
 
     private static class Frame
@@ -65,7 +89,8 @@ public class BowlingGame
             if (firstBallScore == null)
             {
                 firstBallScore = frameBallScore;
-            } else
+            }
+            else
             {
                 secondBallScore = frameBallScore;
             }
@@ -118,11 +143,13 @@ public class BowlingGame
                 if (firstBonusBall == null)
                 {
                     firstBonusBall = i;
-                } else
+                }
+                else
                 {
                     secondBonusBall = i;
                 }
-            } else if (isSpare())
+            }
+            else if (isSpare())
             {
                 if (firstBonusBall == null)
                 {
@@ -143,10 +170,12 @@ public class BowlingGame
             if (firstBallScore == null)
             {
                 firstBallScore = frameBallScore;
-            } else if (secondBallScore == null)
+            }
+            else if (secondBallScore == null)
             {
                 secondBallScore = frameBallScore;
-            } else
+            }
+            else
             {
                 thirdBallScore = frameBallScore;
             }
@@ -161,15 +190,18 @@ public class BowlingGame
                     if (thirdBallScore != null)
                     {
                         return firstBallScore + secondBallScore + thirdBallScore;
-                    } else
+                    }
+                    else
                     {
                         return 0;
                     }
-                } else
+                }
+                else
                 {
                     return firstBallScore + secondBallScore;
                 }
-            } else
+            }
+            else
             {
                 return 0;
             }
