@@ -2,7 +2,6 @@ package pl.mschielmann.tddkata.recentlyusedlist;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -117,7 +116,8 @@ public class RecentlyUsedListTest
     }
 
     @Test
-    public void when_element_gets_removed_from_the_middle_other_get_shifted() {
+    public void when_element_gets_removed_from_the_middle_other_get_shifted()
+    {
         int maxSize = 5;
         RecentlyUsedList recentlyUsedList = new RecentlyUsedList(maxSize);
 
@@ -135,7 +135,8 @@ public class RecentlyUsedListTest
     }
 
     @Test
-    public void acceptance_test() {
+    public void acceptance_test()
+    {
         int maxSize = 10;
         RecentlyUsedList recentlyUsedList = new RecentlyUsedList(maxSize);
         List<String> elementsToAdd = Arrays.asList(
@@ -159,7 +160,7 @@ public class RecentlyUsedListTest
         );
         int numberOfElementsToAdd = elementsToAdd.size();
 
-        for (String element: elementsToAdd)
+        for (String element : elementsToAdd)
         {
             recentlyUsedList.add(element);
         }
@@ -167,7 +168,8 @@ public class RecentlyUsedListTest
         assertEquals(maxSize, recentlyUsedList.size());
         List<String> expectedElements = elementsToAdd.subList(numberOfElementsToAdd - maxSize, numberOfElementsToAdd);
         Collections.reverse(expectedElements);
-        for (int i = 0; i < maxSize; i++) {
+        for (int i = 0; i < maxSize; i++)
+        {
             assertEquals(expectedElements.get(i), recentlyUsedList.getElement(i));
         }
     }
