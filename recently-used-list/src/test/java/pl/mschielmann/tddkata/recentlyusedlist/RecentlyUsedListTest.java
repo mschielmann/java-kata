@@ -29,4 +29,13 @@ public class RecentlyUsedListTest
         recentlyUsedList.add("ElementOne");
         assertEquals("ElementOne", recentlyUsedList.getElement(0));
     }
+
+    @Test
+    public void when_one_element_added_and_removed_then_list_is_empty()
+    {
+        RecentlyUsedList recentlyUsedList = new RecentlyUsedList();
+        recentlyUsedList.add("ElementOne");
+        recentlyUsedList.remove(0);
+        assertEquals(0, recentlyUsedList.size());
+    }
 }

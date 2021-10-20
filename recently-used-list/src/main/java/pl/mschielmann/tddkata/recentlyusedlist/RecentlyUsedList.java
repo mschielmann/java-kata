@@ -17,8 +17,13 @@ class RecentlyUsedList
         list.add(element);
     }
 
-    public String getElement(int index)
+    String getElement(int index)
     {
         return list.get(index);
+    }
+
+    void remove(int index)
+    {
+        list.remove(index);
     }
 }
