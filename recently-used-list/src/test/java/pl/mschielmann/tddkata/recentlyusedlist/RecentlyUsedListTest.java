@@ -92,4 +92,21 @@ public class RecentlyUsedListTest
         assertEquals("Element3", recentlyUsedList.getElement(4));
     }
 
+    @Test
+    public void when_same_element_added_again_it_becomes_first_and_others_are_shifted() {
+        int maxSize = 5;
+        RecentlyUsedList recentlyUsedList = new RecentlyUsedList(maxSize);
+
+        recentlyUsedList.add("Element1");
+        recentlyUsedList.add("Element2");
+        recentlyUsedList.add("Element3");
+        recentlyUsedList.add("Element4");
+        recentlyUsedList.add("Element2");
+
+        assertEquals(4, recentlyUsedList.size());
+        assertEquals("Element2", recentlyUsedList.getElement(0));
+        assertEquals("Element4", recentlyUsedList.getElement(1));
+        assertEquals("Element3", recentlyUsedList.getElement(2));
+        assertEquals("Element1", recentlyUsedList.getElement(3));
+    }
 }

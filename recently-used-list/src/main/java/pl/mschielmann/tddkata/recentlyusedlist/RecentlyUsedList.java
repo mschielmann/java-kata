@@ -21,6 +21,7 @@ class RecentlyUsedList
 
     void add(String element)
     {
+        list.remove(element);
         if (list.size() >= maxSize) {
             list.remove(maxSize - 1);
         }
