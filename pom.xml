@@ -8,6 +8,7 @@
     <modules>
         <module>bowling-game-score</module>
         <module>fizzbuzz</module>
+        <module>recently-used-list</module>
     </modules>
 
     <groupId>pl.mschielmann.tddkata</groupId>
