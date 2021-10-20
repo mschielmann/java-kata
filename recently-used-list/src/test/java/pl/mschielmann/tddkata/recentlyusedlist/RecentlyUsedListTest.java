@@ -117,6 +117,24 @@ public class RecentlyUsedListTest
     }
 
     @Test
+    public void when_element_gets_removed_from_the_middle_other_get_shifted() {
+        int maxSize = 5;
+        RecentlyUsedList recentlyUsedList = new RecentlyUsedList(maxSize);
+
+        recentlyUsedList.add("Element1");
+        recentlyUsedList.add("Element2");
+        recentlyUsedList.add("Element3");
+        recentlyUsedList.add("Element4");
+
+        recentlyUsedList.remove(1);
+
+        assertEquals(3, recentlyUsedList.size());
+        assertEquals("Element4", recentlyUsedList.getElement(0));
+        assertEquals("Element2", recentlyUsedList.getElement(1));
+        assertEquals("Element1", recentlyUsedList.getElement(2));
+    }
+
+    @Test
     public void acceptance_test() {
         int maxSize = 10;
         RecentlyUsedList recentlyUsedList = new RecentlyUsedList(maxSize);
