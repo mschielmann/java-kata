@@ -19,7 +19,7 @@ class RecentlyUsedList
 
     void add(String element)
     {
-        list.add(element);
+        list.add(0, element);
     }
 
     String getElement(int index)

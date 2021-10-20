@@ -40,7 +40,7 @@ public class RecentlyUsedListTest
     }
 
     @Test
-    public void when_max_number_of_elements_added_then_all_are_in_the_list()
+    public void when_max_number_of_elements_added_then_all_are_in_the_list_in_opposite_order()
     {
         RecentlyUsedList recentlyUsedList = new RecentlyUsedList(5);
         recentlyUsedList.add("Element1");
@@ -50,10 +50,10 @@ public class RecentlyUsedListTest
         recentlyUsedList.add("Element5");
 
         assertEquals(5, recentlyUsedList.size());
-        assertEquals("Element1", recentlyUsedList.getElement(0));
-        assertEquals("Element2", recentlyUsedList.getElement(1));
+        assertEquals("Element5", recentlyUsedList.getElement(0));
+        assertEquals("Element4", recentlyUsedList.getElement(1));
         assertEquals("Element3", recentlyUsedList.getElement(2));
-        assertEquals("Element4", recentlyUsedList.getElement(3));
-        assertEquals("Element5", recentlyUsedList.getElement(4));
+        assertEquals("Element2", recentlyUsedList.getElement(3));
+        assertEquals("Element1", recentlyUsedList.getElement(4));
     }
 }
