@@ -2,6 +2,11 @@ package pl.mschielmann.tddkata.recentlyusedlist;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecentlyUsedListTest
@@ -109,5 +114,43 @@ public class RecentlyUsedListTest
         assertEquals("Element4", recentlyUsedList.getElement(1));
         assertEquals("Element3", recentlyUsedList.getElement(2));
         assertEquals("Element1", recentlyUsedList.getElement(3));
+    }
+
+    @Test
+    public void acceptance_test() {
+        int maxSize = 10;
+        RecentlyUsedList recentlyUsedList = new RecentlyUsedList(maxSize);
+        List<String> elementsToAdd = Arrays.asList(
+                "Element1",
+                "Element2",
+                "Element3",
+                "Element4",
+                "Element2",
+                "Element5",
+                "Element6",
+                "Element4",
+                "Element3",
+                "Element7",
+                "Element8",
+                "Element2",
+                "Element9",
+                "Element10",
+                "Element1",
+                "Element11",
+                "Element12"
+        );
+        int numberOfElementsToAdd = elementsToAdd.size();
+
+        for (String element: elementsToAdd)
+        {
+            recentlyUsedList.add(element);
+        }
+
+        assertEquals(maxSize, recentlyUsedList.size());
+        List<String> expectedElements = elementsToAdd.subList(numberOfElementsToAdd - maxSize, numberOfElementsToAdd);
+        Collections.reverse(expectedElements);
+        for (int i = 0; i < maxSize; i++) {
+            assertEquals(expectedElements.get(i), recentlyUsedList.getElement(i));
+        }
     }
 }
