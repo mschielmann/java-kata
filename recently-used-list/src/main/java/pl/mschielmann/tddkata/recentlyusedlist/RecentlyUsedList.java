@@ -5,7 +5,12 @@ import java.util.List;
 
 class RecentlyUsedList
 {
-    private List<String> list = new ArrayList<>();
+    private final List<String> list;
+
+    public RecentlyUsedList(int maxSize)
+    {
+        list = new ArrayList<>(maxSize);
+    }
 
     int size()
     {
