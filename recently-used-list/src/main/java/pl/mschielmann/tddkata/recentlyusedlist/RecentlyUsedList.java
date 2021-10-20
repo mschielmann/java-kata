@@ -6,9 +6,11 @@ import java.util.List;
 class RecentlyUsedList
 {
     private final List<String> list;
+    private final int maxSize;
 
     public RecentlyUsedList(int maxSize)
     {
+        this.maxSize = maxSize;
         list = new ArrayList<>(maxSize);
     }
 
@@ -19,6 +21,9 @@ class RecentlyUsedList
 
     void add(String element)
     {
+        if (list.size() >= maxSize) {
+            list.remove(maxSize - 1);
+        }
         list.add(0, element);
     }
 

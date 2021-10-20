@@ -56,4 +56,24 @@ public class RecentlyUsedListTest
         assertEquals("Element2", recentlyUsedList.getElement(3));
         assertEquals("Element1", recentlyUsedList.getElement(4));
     }
+
+    @Test
+    public void when_more_than_max_number_of_elements_added_then_eldest_gets_removed()
+    {
+        RecentlyUsedList recentlyUsedList = new RecentlyUsedList(5);
+        recentlyUsedList.add("Element1");
+        recentlyUsedList.add("Element2");
+        recentlyUsedList.add("Element3");
+        recentlyUsedList.add("Element4");
+        recentlyUsedList.add("Element5");
+        recentlyUsedList.add("Element6");
+        recentlyUsedList.add("Element7");
+
+        assertEquals(5, recentlyUsedList.size());
+        assertEquals("Element7", recentlyUsedList.getElement(0));
+        assertEquals("Element6", recentlyUsedList.getElement(1));
+        assertEquals("Element5", recentlyUsedList.getElement(2));
+        assertEquals("Element4", recentlyUsedList.getElement(3));
+        assertEquals("Element3", recentlyUsedList.getElement(4));
+    }
 }
