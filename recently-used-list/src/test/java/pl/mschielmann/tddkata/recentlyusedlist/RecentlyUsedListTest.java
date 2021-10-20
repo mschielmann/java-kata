@@ -93,7 +93,8 @@ public class RecentlyUsedListTest
     }
 
     @Test
-    public void when_same_element_added_again_it_becomes_first_and_others_are_shifted() {
+    public void when_same_element_added_again_it_becomes_first_and_others_are_shifted()
+    {
         int maxSize = 5;
         RecentlyUsedList recentlyUsedList = new RecentlyUsedList(maxSize);
 
