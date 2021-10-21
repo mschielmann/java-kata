@@ -12,4 +12,13 @@ public class SimpleHashMapTest
 
         assertEquals(0, hashMap.size());
     }
+
+    @Test
+    public void when_one_element_added_size_is_1() {
+        SimpleHashMap hashMap = new SimpleHashMap();
+
+        hashMap.put("key1", "value1");
+
+        assertEquals(1, hashMap.size());
+    }
 }

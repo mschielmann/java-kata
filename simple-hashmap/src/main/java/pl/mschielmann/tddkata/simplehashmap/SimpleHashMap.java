@@ -3,8 +3,15 @@ package pl.mschielmann.tddkata.simplehashmap;
 class SimpleHashMap
 {
 
+    private int size = 0;
+
     int size()
     {
-        return 0;
+        return size;
+    }
+
+    void put(String key, String value)
+    {
+        size++;
     }
 }
