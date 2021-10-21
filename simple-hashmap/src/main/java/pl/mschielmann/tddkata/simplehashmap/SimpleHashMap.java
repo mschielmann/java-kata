@@ -18,8 +18,21 @@ class SimpleHashMap
         if (key == null) {
             throw new NullPointerException("Key cannot be null.");
         }
-        SimpleEntry entry = new SimpleEntry(key, value);
-        entries.add(entry);
+        SimpleEntry existingEntryForSameKey = null;
+        for (SimpleEntry entry : entries)
+        {
+            if (entry.key.equals(key))
+            {
+                existingEntryForSameKey = entry;
+                break;
+            }
+        }
+
+        if (existingEntryForSameKey != null) {
+            entries.remove(existingEntryForSameKey);
+        }
+        SimpleEntry newEntry = new SimpleEntry(key, value);
+        entries.add(newEntry);
     }
 
     String get(String key)

@@ -38,4 +38,17 @@ public class SimpleHashMapTest
 
         assertThrows(NullPointerException.class, () -> hashMap.put(null, "value1"));
     }
+
+    @Test
+    public void when_element_added_with_same_key_old_value_is_replaced() {
+        SimpleHashMap hashMap = new SimpleHashMap();
+
+        hashMap.put("key1", "value1");
+        hashMap.put("key2", "value2");
+        hashMap.put("key3", "value3");
+        hashMap.put("key2", "newValue2");
+
+        assertEquals(3, hashMap.size());
+        assertEquals("newValue2", hashMap.get("key2"));
+    }
 }
