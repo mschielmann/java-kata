@@ -41,7 +41,7 @@ public class SimpleHashMapTest
 
     @Test
     public void when_element_added_with_same_key_old_value_is_replaced() {
-        SimpleHashMap hashMap = new SimpleHashMap();
+        SimpleHashMap<String> hashMap = new SimpleHashMap<>();
 
         hashMap.put("key1", "value1");
         hashMap.put("key2", "value2");
@@ -50,5 +50,18 @@ public class SimpleHashMapTest
 
         assertEquals(3, hashMap.size());
         assertEquals("newValue2", hashMap.get("key2"));
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void any_object_can_be_key() {
+        SimpleHashMap hashMap = new SimpleHashMap();
+
+        hashMap.put(1L, "value1");
+        hashMap.put("key2", "value2");
+
+        assertEquals(2, hashMap.size());
+        assertEquals("value1", hashMap.get(1L));
+        assertEquals("value2", hashMap.get("key2"));
     }
 }

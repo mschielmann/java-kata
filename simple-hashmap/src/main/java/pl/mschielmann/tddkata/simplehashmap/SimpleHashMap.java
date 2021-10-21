@@ -3,17 +3,17 @@ package pl.mschielmann.tddkata.simplehashmap;
 import java.util.ArrayList;
 import java.util.List;
 
-class SimpleHashMap
+class SimpleHashMap<T>
 {
 
-    private List<SimpleEntry> entries = new ArrayList<>();
+    private final List<SimpleEntry> entries = new ArrayList<>();
 
     int size()
     {
         return entries.size();
     }
 
-    void put(String key, String value)
+    void put(T key, String value)
     {
         if (key == null) {
             throw new NullPointerException("Key cannot be null.");
@@ -35,7 +35,7 @@ class SimpleHashMap
         entries.add(newEntry);
     }
 
-    String get(String key)
+    String get(T key)
     {
         for (SimpleEntry entry : entries)
         {
@@ -49,10 +49,10 @@ class SimpleHashMap
 
     class SimpleEntry
     {
-        private final String key;
+        private final T key;
         private final String value;
 
-        SimpleEntry(String key, String value)
+        SimpleEntry(T key, String value)
         {
             this.key = key;
             this.value = value;
