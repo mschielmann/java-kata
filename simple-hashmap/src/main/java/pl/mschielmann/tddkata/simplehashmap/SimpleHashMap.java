@@ -49,6 +49,24 @@ class SimpleHashMap<K, V>
         return null;
     }
 
+    void remove(V key)
+    {
+        SimpleEntry existingEntryForSameKey = null;
+        for (SimpleEntry entry : entries)
+        {
+            if (entry.key.equals(key))
+            {
+                existingEntryForSameKey = entry;
+                break;
+            }
+        }
+
+        if (existingEntryForSameKey != null)
+        {
+            entries.remove(existingEntryForSameKey);
+        }
+    }
+
     class SimpleEntry
     {
         private final K key;
