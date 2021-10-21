@@ -9,6 +9,7 @@
         <module>bowling-game-score</module>
         <module>fizzbuzz</module>
         <module>recently-used-list</module>
+        <module>simple-hashmap</module>
     </modules>
 
     <groupId>pl.mschielmann.tddkata</groupId>
