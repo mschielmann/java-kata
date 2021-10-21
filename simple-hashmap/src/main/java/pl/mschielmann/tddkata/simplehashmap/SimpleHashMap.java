@@ -1,16 +1,26 @@
 package pl.mschielmann.tddkata.simplehashmap;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 class SimpleHashMap<K, V>
 {
 
-    private final List<SimpleEntry> entries = new ArrayList<>();
+    private final List<LinkedList<SimpleEntry>> buckets = new ArrayList<>();
+    private final int numberOfBuckets = 16;
+    private long elementsCount = 0L;
 
-    int size()
+    SimpleHashMap() {
+        for (int i = 0; i < numberOfBuckets; i++)
+        {
+            buckets.add(new LinkedList<>());
+        }
+    }
+
+    long size()
     {
-        return entries.size();
+        return elementsCount;
     }
 
     void put(K key, V value)
@@ -19,27 +29,18 @@ class SimpleHashMap<K, V>
         {
             throw new NullPointerException("Key cannot be null.");
         }
-        SimpleEntry existingEntryForSameKey = null;
-        for (SimpleEntry entry : entries)
-        {
-            if (entry.key.equals(key))
-            {
-                existingEntryForSameKey = entry;
-                break;
-            }
-        }
+        remove(key);
 
-        if (existingEntryForSameKey != null)
-        {
-            entries.remove(existingEntryForSameKey);
-        }
+        LinkedList<SimpleEntry> bucket = buckets.get(key.hashCode() % numberOfBuckets);
         SimpleEntry newEntry = new SimpleEntry(key, value);
-        entries.add(newEntry);
+        bucket.add(newEntry);
+        elementsCount++;
     }
 
     V get(K key)
     {
-        for (SimpleEntry entry : entries)
+        LinkedList<SimpleEntry> bucketEntries = buckets.get(key.hashCode() % numberOfBuckets);
+        for (SimpleEntry entry : bucketEntries)
         {
             if (entry.key.equals(key))
             {
@@ -49,10 +50,12 @@ class SimpleHashMap<K, V>
         return null;
     }
 
-    void remove(V key)
+    void remove(K key)
     {
+        LinkedList<SimpleEntry> bucketEntries = buckets.get(key.hashCode() % numberOfBuckets);
+
         SimpleEntry existingEntryForSameKey = null;
-        for (SimpleEntry entry : entries)
+        for (SimpleEntry entry : bucketEntries)
         {
             if (entry.key.equals(key))
             {
@@ -63,7 +66,8 @@ class SimpleHashMap<K, V>
 
         if (existingEntryForSameKey != null)
         {
-            entries.remove(existingEntryForSameKey);
+            bucketEntries.remove(existingEntryForSameKey);
+            elementsCount--;
         }
     }
 
