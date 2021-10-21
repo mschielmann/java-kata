@@ -11,7 +11,8 @@ class SimpleHashMap<K, V>
     private final int numberOfBuckets = 16;
     private long elementsCount = 0L;
 
-    SimpleHashMap() {
+    SimpleHashMap()
+    {
         for (int i = 0; i < numberOfBuckets; i++)
         {
             buckets.add(new LinkedList<>());

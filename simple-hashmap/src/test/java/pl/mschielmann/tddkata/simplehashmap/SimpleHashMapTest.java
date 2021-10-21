@@ -122,7 +122,8 @@ public class SimpleHashMapTest
     }
 
     @Test
-    public void assure_that_same_hash_entries_can_be_stored() {
+    public void assure_that_same_hash_entries_can_be_stored()
+    {
         SimpleHashMap<TestObject, String> hashMap = new SimpleHashMap<>();
         TestObject key1 = new TestObject(1);
         TestObject key2 = new TestObject(2);
