@@ -15,6 +15,9 @@ class SimpleHashMap
 
     void put(String key, String value)
     {
+        if (key == null) {
+            throw new NullPointerException("Key cannot be null.");
+        }
         SimpleEntry entry = new SimpleEntry(key, value);
         entries.add(entry);
     }

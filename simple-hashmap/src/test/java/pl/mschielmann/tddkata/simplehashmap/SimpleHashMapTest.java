@@ -3,6 +3,7 @@ package pl.mschielmann.tddkata.simplehashmap;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SimpleHashMapTest
 {
@@ -29,5 +30,12 @@ public class SimpleHashMapTest
         hashMap.put("key1", "value1");
 
         assertEquals("value1", hashMap.get("key1"));
+    }
+
+    @Test
+    public void when_null_key_added_then_npe_is_thrown() {
+        SimpleHashMap hashMap = new SimpleHashMap();
+
+        assertThrows(NullPointerException.class, () -> hashMap.put(null, "value1"));
     }
 }
