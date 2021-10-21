@@ -121,6 +121,24 @@ public class SimpleHashMapTest
         assertTrue(key2.equalsWasInvoked);
     }
 
+    @Test
+    public void assure_that_same_hash_entries_can_be_stored() {
+        SimpleHashMap<TestObject, String> hashMap = new SimpleHashMap<>();
+        TestObject key1 = new TestObject(1);
+        TestObject key2 = new TestObject(2);
+        TestObject key3 = new TestObject(2);
+
+        hashMap.put(key1, "value1");
+        hashMap.put(key2, "value2");
+        hashMap.put(key3, "value3");
+        hashMap.get(key3);
+
+        assertEquals(3, hashMap.size());
+        assertFalse(key1.equalsWasInvoked);
+        assertTrue(key2.equalsWasInvoked);
+        assertTrue(key3.equalsWasInvoked);
+    }
+
     static class TestObject
     {
         private final int hash;
