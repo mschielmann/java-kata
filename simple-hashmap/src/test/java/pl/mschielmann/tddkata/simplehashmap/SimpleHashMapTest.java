@@ -21,4 +21,13 @@ public class SimpleHashMapTest
 
         assertEquals(1, hashMap.size());
     }
+
+    @Test
+    public void when_element_added_it_can_be_retrieved_by_key() {
+        SimpleHashMap hashMap = new SimpleHashMap();
+
+        hashMap.put("key1", "value1");
+
+        assertEquals("value1", hashMap.get("key1"));
+    }
 }
