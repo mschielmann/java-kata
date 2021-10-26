@@ -10,6 +10,7 @@
         <module>fizzbuzz</module>
         <module>recently-used-list</module>
         <module>simple-hashmap</module>
+        <module>sudoku-solver</module>
     </modules>
 
     <groupId>pl.mschielmann.tddkata</groupId>
