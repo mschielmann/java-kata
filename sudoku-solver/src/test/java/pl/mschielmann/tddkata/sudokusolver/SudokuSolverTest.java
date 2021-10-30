@@ -28,4 +28,15 @@ class SudokuSolverTest
         assertEquals(" ", puzzle.display());
     }
 
+    @Test
+    public void given_1_dimension_puzzle_with_empty_input_can_solve_it()
+    {
+        String input = " ";
+        SudokuPuzzle puzzle = new SudokuPuzzle(1, input);
+
+        puzzle.solve();
+
+        assertTrue(puzzle.isSolved());
+        assertEquals("1", puzzle.display());
+    }
 }
